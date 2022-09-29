@@ -99,12 +99,20 @@ class WebsiteGenerator : Website
 
         FileStream fs = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
 
+        TextWriter tw = Console.Out;
+
         StreamWriter sw = new StreamWriter(fs);
 
-        sw.WriteLine(printStart());
-        sw.WriteLine(printWelcome(this.className, this.messagesToClass));
-        sw.WriteLine(printKurser());
-        sw.WriteLine(printEnd());
+        Console.SetOut(sw);
+
+        printPage();
+
+        Console.SetOut(tw);
+
+        //sw.WriteLine(printStart());
+        //sw.WriteLine(printWelcome(this.className, this.messagesToClass));
+        //sw.WriteLine(printKurser());
+        //sw.WriteLine(printEnd());
 
         sw.Close();
     }
